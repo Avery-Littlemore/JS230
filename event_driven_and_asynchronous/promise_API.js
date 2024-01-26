@@ -97,7 +97,7 @@ function loadMultipleResources(urls) {
 
 
 loadMultipleResources([
-  "https://jsonplaceholder.typicode.com/todos/1",
+  "https://jsonplaceholder.typicode.com/tofs/1",
   "invalidUrl",
 ]).then((results) => {
   results.forEach((result) => {
