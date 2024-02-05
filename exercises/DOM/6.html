@@ -1,0 +1,66 @@
+<!-- Write a function that takes two element ids as arguments and swaps the positions of the elements represented by the ids. 
+  The function returns true for valid swaps and undefined for invalid. To put the focus on the node swapping functionality, 
+  you can assume that nodes will have a value for the id attribute and two arguments will always be provided. Use the following
+  HTML and sample codes to test your output:
+ -->
+ <!doctype html>
+ <html>
+   <head>
+     <title>Node Swap</title>
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function nodeSwap(firstID, secondID) {
+          let first = document.getElementById(firstID);
+          let second = document.getElementById(secondID);
+          if (!first || !second || first.contains(second) || second.contains(first)) {
+            console.log(undefined);
+            return;
+          }
+
+          let firstParent = first.parentNode;
+          let secondParent = second.parentNode;
+
+          let firstCopy = first.cloneNode(true);
+          let secondCopy = second.cloneNode(true);
+
+          firstParent.replaceChild(secondCopy, first);
+          secondParent.replaceChild(firstCopy, second);
+
+          return true;
+          
+        }
+        
+        // at least one of the id attributes doesn't exist
+        nodeSwap(1, 20);
+        // = undefined
+
+        // at least one of the nodes is a "child" of the other
+        nodeSwap(1, 4);
+        // = undefined
+        nodeSwap(9, 3);
+        // = undefined
+
+        // one swap
+        // nodeSwap(1, 2);
+
+        // multiple swaps
+        nodeSwap(3, 1);
+        nodeSwap(7, 9);
+      });
+      </script>
+    </head>
+   <body>
+     <div id="1">
+       <div id="4"></div>
+       <div id="5">
+         <div id="6"></div>
+       </div>
+     </div>
+     <div id="2"></div>
+     <div id="3">
+       <div id="7"></div>
+       <div id="8"></div>
+       <div id="9"></div>
+     </div>
+   </body>
+ </html>
