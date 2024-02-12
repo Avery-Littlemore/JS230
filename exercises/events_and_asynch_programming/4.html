@@ -1,0 +1,8 @@
+<!-- The code below is buggy. The person who created the code expects that nothing will happen when the user clicks on the image. This, however, isn't the case; clicking the image still brings the user to another web page. -->
+
+<!-- https://codepen.io/launchschool/pen/gOapjZX -->
+
+<!-- The code uses event.stopPropagation instead of event.preventDefault. event.stopPropagation prevents subsequent listeners 
+from firing, but it doesn't prevent the default behavior. Thus, when the user clicks the link, the browser executes the 
+default action of trying to visit the named URL. -->
+

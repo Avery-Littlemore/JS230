@@ -17,15 +17,26 @@ function callback3() {
 }
 
 function randomizer(...callbacks) {
-  let counter = 1;
-  let interval = setInterval(() => {
-    console.log(counter);
-    counter += 1;
-  }, 1000)
+  if (callbacks.length < 1) {
+    return;
+  }
 
-  let stopInterval = setTimeout(() => {
-    clearInterval(interval);
-  }, callbacks.length * 2000)
+  const secondsEnd = 2 * callbacks.length;
+  let secondsElapsed = 0;
+
+  const timeLogger = setInterval(() => {
+    secondsElapsed += 1;
+    console.log(secondsElapsed);
+
+    if (secondsElapsed >= secondsEnd) {
+      clearInterval(timeLogger);
+    }
+  }, 1000);
+
+  callbacks.forEach(callback => {
+    const executeTime = Math.floor(Math.random() * secondsEnd * 1000);
+    setTimeout(callback, executeTime);
+  });
 }
 
 randomizer(callback1, callback2, callback3);
